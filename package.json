@@ -50,15 +50,14 @@
         "karma-sourcemap-loader": "^0.3.7",
         "mocha": "^8.2.1",
         "parcel": "^2.0.0-beta.1",
-        "react-addons-test-utils": "^15.4.1",
         "react-wrappy-text": "^1.1.1"
     },
     "dependencies": {
         "classnames": "^2.2.3",
         "lodash": "^4.0.0",
         "raycast-dom": "^1.0.0",
-        "react": "^15.4.1",
-        "react-dom": "^15.4.1",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
         "react-liberator": "^1.1.1"
     },
     "precommit": [
