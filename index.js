@@ -1,3 +1,3 @@
-module.exports.Menu = require('./build/components/Menu');
-module.exports.DropdownMenu = require('./build/components/DropdownMenu');
-module.exports.MenuEmitter = require('./build/emitters/MenuEmitter');
+export { default as Menu } from "./build/components/Menu";
+export { default as DropdownMenu } from "./build/components/DropdownMenu";
+export { default as MenuEmitter } from "./build/components/MenuEmitter";
