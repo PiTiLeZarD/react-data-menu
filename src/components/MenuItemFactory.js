@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-var classnames = require('classnames');
+var classnames = require("classnames");
 
 export default class MenuItemFactory {
-
     constructor(renderers, classPrefix) {
         this.renderers = renderers;
         this.classPrefix = classPrefix;
@@ -17,12 +16,12 @@ export default class MenuItemFactory {
             classPrefix = this.classPrefix,
             className;
 
-            additions[this.classPrefix + 'menu-item'] = true;
-            additions[this.classPrefix + 'menu-item-expandable'] = isExpandable;
-            className = classnames(classes, additions);
+        additions[this.classPrefix + "menu-item"] = true;
+        additions[this.classPrefix + "menu-item-expandable"] = isExpandable;
+        className = classnames(classes, additions);
 
         if (!renderer) {
-            throw 'Undefined renderer for type [' + data.type + ']';
+            throw "Undefined renderer for type [" + data.type + "]";
         }
 
         return React.createElement(renderer, {
@@ -31,7 +30,7 @@ export default class MenuItemFactory {
             isExpandable,
             className,
             classPrefix,
-            config
+            config,
         });
     }
 }

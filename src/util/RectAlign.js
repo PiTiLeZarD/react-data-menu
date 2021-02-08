@@ -1,34 +1,33 @@
-import RectUtil from './RectUtil.js';
+import RectUtil from "./RectUtil.js";
 
 export var RectAlignSide = {
-    NORTH: 'n',
-    SOUTH: 's',
-    EAST: 'e',
-    WEST: 'w',
+    NORTH: "n",
+    SOUTH: "s",
+    EAST: "e",
+    WEST: "w",
 };
 
 export var RectAlignAnchor = {
-    START: 's',
-    MIDDLE: 'm',
-    END: 'e'
+    START: "s",
+    MIDDLE: "m",
+    END: "e",
 };
 
 export default class RectAlign {
-
     constructor(aligner, target) {
         this.aligner = aligner;
         this.target = target;
     }
 
     getPosition(hints) {
-        var tries = [], 
+        var tries = [],
             success = {
                 x: -1,
-                y: -1
+                y: -1,
             },
             position;
 
-        hints.find(function(hint) {
+        hints.find(function (hint) {
             tries.push(hint);
             position = this.tryHint(hint);
             if (position.fitsX && success.x === -1) {
@@ -53,7 +52,14 @@ export default class RectAlign {
     getFallbackPosition(position, success, hints) {
         var aligner = this.aligner,
             target = this.target,
-            preferredPosition, position, closerToLeft, closerToTop, left, right, top, bottom;
+            preferredPosition,
+            position,
+            closerToLeft,
+            closerToTop,
+            left,
+            right,
+            top,
+            bottom;
 
         // doesn't fit in any direction
         // settle closest to the first hint
@@ -65,8 +71,8 @@ export default class RectAlign {
                 left = target.body.left;
                 right = aligner.body.width - target.body.width;
                 closerToLeft = left < right;
-                preferredPosition.x = closerToLeft ? 0 : (aligner.body.width - target.body.width);
-            }            
+                preferredPosition.x = closerToLeft ? 0 : aligner.body.width - target.body.width;
+            }
         }
         if (!preferredPosition.fitsY) {
             if (success.y !== -1) {
@@ -75,7 +81,7 @@ export default class RectAlign {
                 top = target.body.top;
                 bottom = aligner.body.height - target.body.height;
                 closerToTop = top < bottom;
-                preferredPosition.y = closerToTop ? 0 : (aligner.body.height - target.body.height);
+                preferredPosition.y = closerToTop ? 0 : aligner.body.height - target.body.height;
             }
         }
 
@@ -86,10 +92,14 @@ export default class RectAlign {
     tryHint(hint) {
         var aligner = this.aligner,
             target = this.target,
-            offset = {x: target.body.left - target.handle.left, y: target.body.top - target.handle.top},
+            offset = { x: target.body.left - target.handle.left, y: target.body.top - target.handle.top },
             side = hint[0],
             position = hint[1],
-            x, y, fitsX, fitsY, fits;
+            x,
+            y,
+            fitsX,
+            fitsY,
+            fits;
 
         switch (side) {
             case RectAlignSide.EAST:
@@ -105,7 +115,7 @@ export default class RectAlign {
                 y = aligner.handle.bottom;
                 break;
             default:
-                throw 'Unknown side: ' + side;
+                throw "Unknown side: " + side;
         }
 
         switch (side) {
@@ -122,7 +132,7 @@ export default class RectAlign {
                         y = aligner.handle.bottom - target.body.height;
                         break;
                     default:
-                        throw 'Unknown position: ' + position;
+                        throw "Unknown position: " + position;
                 }
                 break;
             case RectAlignSide.NORTH:
@@ -138,19 +148,19 @@ export default class RectAlign {
                         x = aligner.handle.right - target.body.width;
                         break;
                     default:
-                        throw 'Unknown position: ' + position;
+                        throw "Unknown position: " + position;
                 }
                 break;
             default:
-                throw 'Unknown side: ' + side;
+                throw "Unknown side: " + side;
         }
 
         // add offset
         x += offset.x;
         y += offset.y;
 
-        fitsX = x >= 0 && (x + target.body.width <= aligner.body.width); 
-        fitsY = y >= 0 && (y + target.body.height <= aligner.body.height); 
+        fitsX = x >= 0 && x + target.body.width <= aligner.body.width;
+        fitsY = y >= 0 && y + target.body.height <= aligner.body.height;
         fits = fitsX && fitsY;
 
         return {
@@ -159,8 +169,7 @@ export default class RectAlign {
             fitsX,
             fitsY,
             fits,
-            direction: hint
-        }
+            direction: hint,
+        };
     }
-
 }

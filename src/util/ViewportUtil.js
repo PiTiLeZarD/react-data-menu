@@ -1,5 +1,4 @@
 export default class ViewportUtil {
-
     static getRect() {
         var doc = document.documentElement,
             body = document.body;
@@ -8,7 +7,7 @@ export default class ViewportUtil {
             x: 0,
             y: 0,
             width: window.innerWidth || doc.clientWidth || body.clientWidth,
-            height: window.innerHeight || doc.clientHeight || body.clientHeight
+            height: window.innerHeight || doc.clientHeight || body.clientHeight,
         };
     }
 }

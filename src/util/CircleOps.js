@@ -1,4 +1,4 @@
-import { COLORS } from './Colors';
+import { COLORS } from "./Colors";
 
 const TOOLBAR_HEIGHT = 82;
 
@@ -16,7 +16,10 @@ function newCircle(position, circles, yOrigin) {
     var r = Math.floor(Math.random() * 150) + 50,
         color = COLORS[Math.floor(Math.random() * COLORS.length)],
         circle = {
-            x: position.x, y: position.y - yOrigin, r, color
+            x: position.x,
+            y: position.y - yOrigin,
+            r,
+            color,
         };
 
     circles.push(circle);
@@ -31,50 +34,49 @@ function clear(circles) {
 }
 
 export default class CircleOps {
-
     //<editor-fold desc="Circles & commands">
     static executeCommand(command, circles, current, position) {
         var circle = circles[current],
             transformed = false;
 
         switch (command) {
-            case 'increase-x':
+            case "increase-x":
                 circle.x += 10;
                 transformed = true;
                 break;
-            case 'decrease-x':
+            case "decrease-x":
                 circle.x -= 10;
                 transformed = true;
                 break;
-            case 'increase-y':
+            case "increase-y":
                 circle.y += 10;
                 transformed = true;
                 break;
-            case 'decrease-y':
+            case "decrease-y":
                 circle.y -= 10;
                 transformed = true;
                 break;
-            case 'increase-r':
+            case "increase-r":
                 circle.r += 10;
                 transformed = true;
                 break;
-            case 'decrease-r':
+            case "decrease-r":
                 circle.r -= 10;
                 transformed = true;
                 break;
-            case 'bring-to-front':
+            case "bring-to-front":
                 bringToFront(circles, circle, current);
                 break;
-            case 'send-to-back':
+            case "send-to-back":
                 sendToBack(circles, circle, current);
                 break;
-            case 'new-circle':
+            case "new-circle":
                 newCircle(position, circles, TOOLBAR_HEIGHT);
                 break;
-            case 'remove-circle':
+            case "remove-circle":
                 removeCircle(circles, current);
                 break;
-            case 'clear':
+            case "clear":
                 clear(circles);
                 break;
         }

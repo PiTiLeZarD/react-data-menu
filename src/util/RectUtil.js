@@ -1,5 +1,4 @@
 export default class RectUtil {
-
     static getBoundingRect(element) {
         // gets DOMRect object with six properties: left, top, right, bottom, width, height
         var bounds = element.getBoundingClientRect();
@@ -10,8 +9,8 @@ export default class RectUtil {
             top: bounds.top,
             bottom: bounds.bottom,
             width: bounds.width,
-            height: bounds.height
-        }
+            height: bounds.height,
+        };
     }
 
     static getZeroRectAtPosition(position) {
@@ -21,8 +20,8 @@ export default class RectUtil {
             top: position.y,
             bottom: position.y,
             width: 0,
-            height: 0
-        }
+            height: 0,
+        };
     }
 
     static cloneRect(bounds) {
@@ -32,8 +31,8 @@ export default class RectUtil {
             top: bounds.top,
             bottom: bounds.bottom,
             width: bounds.width,
-            height: bounds.height
-        }
+            height: bounds.height,
+        };
     }
 
     static moveRect(bounds, delta) {
@@ -43,7 +42,7 @@ export default class RectUtil {
             top: bounds.top + delta.y,
             bottom: bounds.bottom + delta.y,
             width: bounds.width,
-            height: bounds.height
-        }
+            height: bounds.height,
+        };
     }
 }

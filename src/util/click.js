@@ -1,5 +1,4 @@
 export default class ClickUtil {
-
     static isGhostClick(ray) {
         return ClickUtil.isGhostClickEvent(ray.e);
     }

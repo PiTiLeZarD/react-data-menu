@@ -1,24 +1,24 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Aligner from './../util/Aligner.js';
-import Dom from './../util/Dom';
-import Menu from './Menu';
-import MenuEmitter from './../emitters/MenuEmitter.js';
-import ClickUtil from './../util/click';
+import _ from "lodash";
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Aligner from "./../util/Aligner.js";
+import Dom from "./../util/Dom";
+import Menu from "./Menu";
+import MenuEmitter from "./../emitters/MenuEmitter.js";
+import ClickUtil from "./../util/click";
 
-var classnames = require('classnames');
+var classnames = require("classnames");
 
 const MOUSE_ENTER_DELAY = 0,
-      MOUSE_LEAVE_DELAY = 1000,
-      HINTS = function(depth) { // default hints. Could be overridden via props
-          return !depth ?
-              ['ss', 'se', 'sm', 'ns', 'ne', 'nm'] : // zero depth (first menu popup)
-              ['es', 'em', 'ee', 'ws', 'wm', 'we']; // all other depths
-      };
+    MOUSE_LEAVE_DELAY = 1000,
+    HINTS = function (depth) {
+        // default hints. Could be overridden via props
+        return !depth
+            ? ["ss", "se", "sm", "ns", "ne", "nm"] // zero depth (first menu popup)
+            : ["es", "em", "ee", "ws", "wm", "we"]; // all other depths
+    };
 
 export default class DropdownMenu extends Component {
-
     //<editor-fold desc="Constructor">
     constructor(props) {
         super(props);
@@ -34,7 +34,7 @@ export default class DropdownMenu extends Component {
         this.hideMenu = this.hideMenu.bind(this);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
         };
     }
     //</editor-fold>
@@ -83,7 +83,7 @@ export default class DropdownMenu extends Component {
         // clicking or tapping the toggle parts produces 'onClickOutside' (so if the menu is open, clicking the button will close it)
         // however, tap-and-hold won't produce 'onContextMenu' (which would close the menu)
         var isToggle = this.props.toggleMode && !this.isTouch; // do not use toggle behaviour with touch, because it is currently problematic for MenuEmitter processing logic
-        
+
         MenuEmitter.getInstance().registerPart(this.buttonElement, isToggle);
         this.props.onOpen();
     }
@@ -110,12 +110,13 @@ export default class DropdownMenu extends Component {
 
     setMenuVisibility(visible) {
         this.setState({
-            isOpen: visible
+            isOpen: visible,
         });
     }
 
     openMenu() {
-        if (!this.state.isOpen) { // open only if currently closed
+        if (!this.state.isOpen) {
+            // open only if currently closed
             this.setMenuVisibility(true);
         }
         // else do nothing. If the menu is already open, it will close we'were clicking away from it.
@@ -130,57 +131,64 @@ export default class DropdownMenu extends Component {
 
     //<editor-fold desc="React">
     renderButton() {
-        var className = classnames('', Dom.buildClassNames(this.props.classPrefix, [
-                'menu-button',
-                this.state.isOpen ? 'menu-button-selected' : null
-            ])),
+        var className = classnames(
+                "",
+                Dom.buildClassNames(this.props.classPrefix, [
+                    "menu-button",
+                    this.state.isOpen ? "menu-button-selected" : null,
+                ])
+            ),
             // render the child passed from the outside, or a default button
             children = this.props.children || (
-                <button ref='button' className={className}>
+                <button ref="button" className={className}>
                     {this.props.buttonText}
                 </button>
-            ), self = this;
+            ),
+            self = this;
 
-        return React.Children.map(children, function (child) {
-            return React.cloneElement(child, {
-                ref: 'button',
-                className,
-                onMouseDown: self.onButtonClick, // TODO: onMouseDown
-                onTouchStart: self.onButtonTouchStart,
-                onMouseEnter: self.onButtonMouseEnter,
-                onMouseLeave: self.onButtonMouseLeave,
-                onContextMenu: self.onButtonContextMenu
-            });
-        }.bind(this));
+        return React.Children.map(
+            children,
+            function (child) {
+                return React.cloneElement(child, {
+                    ref: "button",
+                    className,
+                    onMouseDown: self.onButtonClick, // TODO: onMouseDown
+                    onTouchStart: self.onButtonTouchStart,
+                    onMouseEnter: self.onButtonMouseEnter,
+                    onMouseLeave: self.onButtonMouseLeave,
+                    onContextMenu: self.onButtonContextMenu,
+                });
+            }.bind(this)
+        );
     }
 
     render() {
-        var buttonClassName = classnames(this.props.className, Dom.buildClassNames(this.props.classPrefix, [
-                'drop-down',
-                this.state.isOpen ? 'drop-down-open' : null
-            ])),
+        var buttonClassName = classnames(
+                this.props.className,
+                Dom.buildClassNames(this.props.classPrefix, ["drop-down", this.state.isOpen ? "drop-down-open" : null])
+            ),
             menu = this.state.isOpen ? (
-            <Menu
-                config={this.props.config}
-                classPrefix={this.props.classPrefix}
-                onOpen={this.onOpen}
-                onClose={this.onClose}
-                onItemMouseEnter={this.props.onItemMouseEnter}
-                onItemMouseLeave={this.props.onItemMouseLeave}
-                onItemClick={this.props.onItemClick}
-                aligner={this.props.aligner}
-                alignTo={this.buttonElement}
-                hints={this.props.hints}
-                items={this.props.items}
-                autoCloseOtherMenuInstances={this.props.autoCloseOtherMenuInstances}
-                renderers={this.props.renderers}
-                mouseEnterDelay={this.props.mouseEnterDelay}
-                mouseLeaveDelay={this.props.mouseLeaveDelay}
-            />
-        ) : null;
+                <Menu
+                    config={this.props.config}
+                    classPrefix={this.props.classPrefix}
+                    onOpen={this.onOpen}
+                    onClose={this.onClose}
+                    onItemMouseEnter={this.props.onItemMouseEnter}
+                    onItemMouseLeave={this.props.onItemMouseLeave}
+                    onItemClick={this.props.onItemClick}
+                    aligner={this.props.aligner}
+                    alignTo={this.buttonElement}
+                    hints={this.props.hints}
+                    items={this.props.items}
+                    autoCloseOtherMenuInstances={this.props.autoCloseOtherMenuInstances}
+                    renderers={this.props.renderers}
+                    mouseEnterDelay={this.props.mouseEnterDelay}
+                    mouseLeaveDelay={this.props.mouseLeaveDelay}
+                />
+            ) : null;
 
         return (
-            <div className={buttonClassName} >
+            <div className={buttonClassName}>
                 {this.renderButton()}
                 {menu}
             </div>
@@ -210,12 +218,12 @@ DropdownMenu.propTypes = {
     onClose: React.PropTypes.func, // custom close handler
     onItemMouseEnter: React.PropTypes.func, // custom item mouse enter handler
     onItemMouseLeave: React.PropTypes.func, // custom item mouse leave handler
-    onItemClick: React.PropTypes.func // custom item click handler
+    onItemClick: React.PropTypes.func, // custom item click handler
 };
 DropdownMenu.defaultProps = {
     config: {},
-    classPrefix: '',
-    buttonText: '- Menu -',
+    classPrefix: "",
+    buttonText: "- Menu -",
     openOnMouseOver: false,
     closeOnMouseOut: false,
     toggleMode: true,
@@ -229,6 +237,6 @@ DropdownMenu.defaultProps = {
     onClose() {},
     onItemMouseEnter() {},
     onItemMouseLeave() {},
-    onItemClick() {}
+    onItemClick() {},
 };
 //</editor-fold>

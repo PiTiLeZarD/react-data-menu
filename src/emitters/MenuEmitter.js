@@ -1,7 +1,7 @@
-import _ from 'lodash';
-import ClickUtil from './../util/click';
+import _ from "lodash";
+import ClickUtil from "./../util/click";
 
-var EmitterPlug = require('raycast-dom').EmitterPlug.default;
+var EmitterPlug = require("raycast-dom").EmitterPlug.default;
 
 const TAP_AND_HOLD_INTERVAL = 250;
 
@@ -44,7 +44,6 @@ function isTogglePartClicked(ray) {
  * 3. do we click/contextmenu or tap/tap-and-hold
  */
 export default class MenuEmitter extends EmitterPlug {
-
     //<editor-fold desc="Singleton">
     static getInstance() {
         if (!instance) {
@@ -70,8 +69,8 @@ export default class MenuEmitter extends EmitterPlug {
             onTouchStart: this.onTouchStart.bind(this),
             onTouchEnd: this.onTouchEnd.bind(this),
             onResize: this.dispatchClose,
-            onScroll: this.dispatchClose
-        }
+            onScroll: this.dispatchClose,
+        };
     }
     //</editor-fold>
 
@@ -84,7 +83,7 @@ export default class MenuEmitter extends EmitterPlug {
     registerPart(element, isToggle) {
         parts.push({
             element,
-            isToggle
+            isToggle,
         });
     }
 
@@ -127,7 +126,8 @@ export default class MenuEmitter extends EmitterPlug {
 
         var isInside;
 
-        if (!ClickUtil.isGhostClick(ray)) {  // avoid ghost 'click' event on touch devices
+        if (!ClickUtil.isGhostClick(ray)) {
+            // avoid ghost 'click' event on touch devices
             // we're ignoring toggle parts here
             // for instance, if dropdown button is in toggleMode, it is a toggle part
             // if the menu is open and we click the button, the menu should close
@@ -148,7 +148,8 @@ export default class MenuEmitter extends EmitterPlug {
     onMouseUp(ray) {
         var isInside;
 
-        if (!ClickUtil.isGhostClick(ray)) {  // avoid ghost 'click' event on touch devices
+        if (!ClickUtil.isGhostClick(ray)) {
+            // avoid ghost 'click' event on touch devices
             // we're ignoring toggle parts here
             // we're checking only if this was mouseup inside, which would trigger an item when opening the menu with click-and-drag
             isInside = isMenuPartClicked(ray, false);
@@ -204,10 +205,10 @@ export default class MenuEmitter extends EmitterPlug {
             touch = ray.e.changedTouches[0],
             isInside;
 
-            ray.position = {
-                x: touch.clientX,
-                y: touch.clientY
-            };
+        ray.position = {
+            x: touch.clientX,
+            y: touch.clientY,
+        };
 
         isInside = isMenuPartClicked(ray, false);
 
@@ -217,7 +218,7 @@ export default class MenuEmitter extends EmitterPlug {
         } else {
             this.dispatchInteraction(MenuEmitter.ON_TOUCH_START_OUTSIDE, ray, true);
             // after a delay (tap and hold) trigger the context menu handler
-            touchTimeout = setTimeout(function() {
+            touchTimeout = setTimeout(function () {
                 // we're producing the 'onContextMenu' event on tap-and-hold
                 // because of that, we might have tapped the drop-down button, which opened the menu
                 // we're still within this timeout interval, waiting to dispatch ON_CONTEXT_MENU
@@ -241,7 +242,7 @@ export default class MenuEmitter extends EmitterPlug {
 
         ray.position = {
             x: touch.clientX,
-            y: touch.clientY
+            y: touch.clientY,
         };
 
         // reset the tap-and-hold timer
@@ -257,15 +258,15 @@ export default class MenuEmitter extends EmitterPlug {
 }
 
 //<editor-fold desc="Constants">
-MenuEmitter.ON_MOUSE_OVER = 'onMouseOver'; // for opening child popups
-MenuEmitter.ON_MOUSE_OUT = 'onMouseOut'; // for closing child popups
-MenuEmitter.ON_TOUCH_START_INSIDE = 'onTouchStart';
-MenuEmitter.ON_TOUCH_END_INSIDE = 'onTouchEnd';
-MenuEmitter.ON_TOUCH_START_OUTSIDE = 'onTouchStartOutside';
-MenuEmitter.ON_MOUSE_UP_INSIDE = 'onMouseUpInside'; // when menu part clicked
-MenuEmitter.ON_MOUSE_DOWN_INSIDE = 'onMouseDownInside'; // when menu part clicked
-MenuEmitter.ON_MOUSE_DOWN_OUTSIDE = 'onMouseDownOutside'; // when clicked outside of the menu
-MenuEmitter.ON_CONTEXT_MENU_INSIDE = 'onContextMenuInside'; // when menu part right-clicked
-MenuEmitter.ON_CONTEXT_MENU_OUTSIDE = 'onContextMenuOutside'; // when right-clicked outside of the menu
-MenuEmitter.ON_CLOSE = 'onClose'; // when menu has to close
+MenuEmitter.ON_MOUSE_OVER = "onMouseOver"; // for opening child popups
+MenuEmitter.ON_MOUSE_OUT = "onMouseOut"; // for closing child popups
+MenuEmitter.ON_TOUCH_START_INSIDE = "onTouchStart";
+MenuEmitter.ON_TOUCH_END_INSIDE = "onTouchEnd";
+MenuEmitter.ON_TOUCH_START_OUTSIDE = "onTouchStartOutside";
+MenuEmitter.ON_MOUSE_UP_INSIDE = "onMouseUpInside"; // when menu part clicked
+MenuEmitter.ON_MOUSE_DOWN_INSIDE = "onMouseDownInside"; // when menu part clicked
+MenuEmitter.ON_MOUSE_DOWN_OUTSIDE = "onMouseDownOutside"; // when clicked outside of the menu
+MenuEmitter.ON_CONTEXT_MENU_INSIDE = "onContextMenuInside"; // when menu part right-clicked
+MenuEmitter.ON_CONTEXT_MENU_OUTSIDE = "onContextMenuOutside"; // when right-clicked outside of the menu
+MenuEmitter.ON_CLOSE = "onClose"; // when menu has to close
 //</editor-fold>

@@ -1,15 +1,18 @@
-import _ from 'lodash';
-import HoverData from './hoverData';
-import { ITEM_ID_PREFIX } from './../components/MenuPopup';
-import { POPUP_ID_PREFIX } from './../components/Menu';
+import _ from "lodash";
+import HoverData from "./hoverData";
+import { ITEM_ID_PREFIX } from "./../components/MenuPopup";
+import { POPUP_ID_PREFIX } from "./../components/Menu";
 
 export default class HoverDataBuilder {
-
     static build(popups, ray) {
         var data = {},
             popupElement = ray.intersectsId(POPUP_ID_PREFIX),
             itemElement = ray.intersectsId(ITEM_ID_PREFIX),
-            hoverData, popupId, popupIndex, itemId, itemIndex;
+            hoverData,
+            popupId,
+            popupIndex,
+            itemId,
+            itemIndex;
 
         if (popupElement && itemElement) {
             popupId = popupElement.id;

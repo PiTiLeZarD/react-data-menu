@@ -30,7 +30,7 @@ export default class Dom {
             className,
             i;
 
-        for (i = 0; i < len; i ++) {
+        for (i = 0; i < len; i++) {
             className = classNames[i];
             obj[classPrefix + className] = !!className; // only if className defined
         }

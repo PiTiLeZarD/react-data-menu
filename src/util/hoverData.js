@@ -34,7 +34,7 @@ export default class HoverData {
 
     fireCallback() {
         if (!this.hasCallback) {
-            throw 'HoverData: no callback defined';
+            throw "HoverData: no callback defined";
         }
         return this.data.callback(arguments);
     }
@@ -61,7 +61,7 @@ export default class HoverData {
         if (!other || !other.items) {
             return false;
         }
-        return _.some(other.items, function(item) {
+        return _.some(other.items, function (item) {
             return item.itemId === this.itemId;
         });
     }
@@ -70,12 +70,14 @@ export default class HoverData {
         if (!other || !this.items) {
             return false;
         }
-        return _.some(this.items, function(item) {
+        return _.some(this.items, function (item) {
             return this.itemId === item.itemId;
         });
     }
 
     toString() {
-        return 'HoverData [popupId: ' + this.popupId + '; itemId: ' + this.itemId + '; itemIndex: ' + this.itemIndex + ']';
+        return (
+            "HoverData [popupId: " + this.popupId + "; itemId: " + this.itemId + "; itemIndex: " + this.itemIndex + "]"
+        );
     }
 }
