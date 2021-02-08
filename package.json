@@ -1,83 +1,68 @@
 {
-  "name": "react-data-menu",
-  "version": "1.1.3",
-  "description": "Smart data-driven menu rendered in an overlay",
-  "scripts": {
-    "dev": "parcel ./index.html",
-    "build": "parcel build ./index.html",
-    "lint": "eslint src",
-    "test": "karma start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PiTiLeZarD/react-data-menu.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "dom",
-    "element",
-    "node",
-    "popup",
-    "menu",
-    "parent",
-    "render",
-    "different",
-    "div"
-  ],
-  "author": "Danko Kozar <github@dankokozar.com> (http://github.com/dkozar)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dkozar/react-data-menu/issues"
-  },
-  "homepage": "https://github.com/dkozar/react-data-menu#readme",
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.13",
-    "@babel/preset-react": "^7.12.13",
-    "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
-    "@parcel/babel-preset-env": "^2.0.0-alpha.3",
-    "babel-cli": "^6.4.0",
-    "babel-core": "^6.3.15",
-    "babel-eslint": "^8.0.0",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "css-loader": "^0.23.1",
-    "d3": "^3.5.14",
-    "eslint": "^4.7.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-react": "^7.3.0",
-    "eventsource-polyfill": "^0.9.6",
-    "express": "^4.13.3",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "karma": "^0.13.21",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-cli": "^0.1.2",
-    "karma-mocha": "^0.2.2",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
-    "less": "^2.7.1",
-    "less-loader": "^2.2.3",
-    "mocha": "^2.4.5",
-    "parcel": "^2.0.0-beta.1",
-    "react-addons-test-utils": "^15.4.1",
-    "react-wrappy-text": "^1.1.1",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.9",
-    "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
-  },
-  "dependencies": {
-    "classnames": "^2.2.3",
-    "lodash": "^4.0.0",
-    "raycast-dom": "^1.0.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-liberator": "^1.1.1"
-  },
-  "precommit": [
-    "lint",
-    "test"
-  ]
+    "name": "react-data-menu",
+    "version": "1.1.3",
+    "description": "Smart data-driven menu rendered in an overlay",
+    "scripts": {
+        "dev": "parcel ./index.html",
+        "build": "parcel build ./index.html",
+        "lint": "eslint src",
+        "test": "karma start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PiTiLeZarD/react-data-menu.git"
+    },
+    "keywords": [
+        "react",
+        "reactjs",
+        "dom",
+        "element",
+        "node",
+        "popup",
+        "menu",
+        "parent",
+        "render",
+        "different",
+        "div"
+    ],
+    "author": "Danko Kozar <github@dankokozar.com> (http://github.com/dkozar)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/PiTiLeZarD/react-data-menu/issues"
+    },
+    "homepage": "https://github.com/PiTiLeZarD/react-data-menu#readme",
+    "devDependencies": {
+        "@babel/core": "^7.12.13",
+        "@babel/plugin-proposal-class-properties": "^7.12.13",
+        "@babel/preset-react": "^7.12.13",
+        "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
+        "@parcel/babel-preset-env": "^2.0.0-alpha.3",
+        "babel-eslint": "^8.0.0",
+        "eslint": "^4.7.0",
+        "eslint-plugin-babel": "^4.1.2",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-react": "^7.3.0",
+        "karma": "^0.13.21",
+        "karma-chrome-launcher": "^0.2.2",
+        "karma-cli": "^0.1.2",
+        "karma-mocha": "^0.2.2",
+        "karma-parcel": "^0.5.2",
+        "karma-sourcemap-loader": "^0.3.7",
+        "mocha": "^8.2.1",
+        "parcel": "^2.0.0-beta.1",
+        "react-addons-test-utils": "^15.4.1",
+        "react-wrappy-text": "^1.1.1"
+    },
+    "dependencies": {
+        "classnames": "^2.2.3",
+        "lodash": "^4.0.0",
+        "raycast-dom": "^1.0.0",
+        "react": "^15.4.1",
+        "react-dom": "^15.4.1",
+        "react-liberator": "^1.1.1"
+    },
+    "precommit": [
+        "lint",
+        "test"
+    ]
 }
