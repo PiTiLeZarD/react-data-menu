@@ -1,3 +1,3 @@
-export { default as Menu } from "./build/components/Menu";
-export { default as DropdownMenu } from "./build/components/DropdownMenu";
-export { default as MenuEmitter } from "./build/components/MenuEmitter";
+export { default as Menu } from "./src/components/Menu";
+export { default as DropdownMenu } from "./src/components/DropdownMenu";
+export { default as MenuEmitter } from "./src/emitters/MenuEmitter";
